@@ -60,10 +60,16 @@ bool HitTestCircles(Vector2 pos_a, float radius_a, Vector2 pos_b, float radius_b
     {
         // 1) compute mtv magnitude by subtracting the distance between circles from the sum of their radii
         // 2) ensure mtv direction points *from* B *to* A so the mtv resolves A *from* B
+		float dx = pos_b.x - pos_a.x;
+		float dy = pos_b.y - pos_a.y;
+        float distance = (dx * dx) + (dy * dy); 
+		distance = sqrtf(distance);
+		float sum_radii = radius_a + radius_b;
+		float mtv_magnitude = sum_radii - distance;
+
+		Vector2 direction = Vector2Normalize(pos_b - pos_a);
         
-        Vector2 direction = Vector2UnitY;
-        float magnitude = 1.0f;
-        *mtv = direction * magnitude;
+        *mtv = direction * mtv_magnitude;
     }
 
     return collision;
@@ -201,6 +207,8 @@ void DrawBody(PhysicsBody body)
         DrawLineEx(body.pos, body.pos + collider.normal * 50.0f, 2.0f, ORANGE);
     }
 }
+
+
 
 void DrawProjCircles(PhysicsBody a, PhysicsBody b)
 {
