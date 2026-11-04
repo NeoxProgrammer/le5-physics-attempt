@@ -67,7 +67,7 @@ bool HitTestCircles(Vector2 pos_a, float radius_a, Vector2 pos_b, float radius_b
 		float sum_radii = radius_a + radius_b;
 		float mtv_magnitude = sum_radii - distance;
 
-		Vector2 direction = Vector2Normalize(pos_b - pos_a);
+		Vector2 direction = Vector2Normalize(pos_a - pos_b);
         
         *mtv = direction * mtv_magnitude;
     }
