@@ -234,6 +234,7 @@ void DrawProjCirclePlane(PhysicsBody circle, PhysicsBody plane)
     DrawCircleV(proj, 5.0f, ORANGE);
 }
 
+
 void InitBodiesCircles(std::vector<PhysicsBody>* bodies)
 {
     {
