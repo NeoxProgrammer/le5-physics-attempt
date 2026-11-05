@@ -84,9 +84,12 @@ bool HitTestCirclePlane(Vector2 pos_circle, float radius, Vector2 pos_plane, Vec
 
     // mtv magnitude is length of projection of circle along plane normal (the scalar_proj variable)
     // mtv direction is plane normal
+
+    float mtv_magnitude = radius - scalar_proj;
+	Vector2 mtv_direction = normal;
     if (collision && mtv != nullptr)
     {
-        *mtv = Vector2UnitY * -10.0f;
+        *mtv = mtv_direction * mtv_magnitude;
     }
 
     return collision;
